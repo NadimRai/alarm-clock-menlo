@@ -1,6 +1,6 @@
 function alarmClock(){
-	setInterval(clockUpdate,1000);	
-	clockUpdate();
+	var clock = createClock('clock');
+	var clock2 = createClock('clock2')
 }
 
 function clockFormat(val){
@@ -8,11 +8,19 @@ function clockFormat(val){
 		return val;	
 }
 
-function clockUpdate(){
-	var date = new Date();
-	var clock = document.getElementById('clock');
-	clock.innerHTML = clockFormat(date.getHours())+ ":" + clockFormat(date.getMinutes()) + ":" + clockFormat(date.getSeconds());
+function createClock(id){
+	var c = new Object();
+	c.updateClock =  function(){
+		var date = new Date();
+		var clock = document.getElementById(id);
+		clock.innerHTML = clockFormat(date.getHours())+ ":" + clockFormat(date.getMinutes()) + ":" + clockFormat(date.getSeconds());
+	};
+
+	setInterval(c.updateClock,1000);	
+	c.updateClock();
+	return c;
 }
+
 
 window.onload = alarmClock;
 
