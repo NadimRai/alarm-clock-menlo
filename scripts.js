@@ -1,5 +1,6 @@
 function alarmClock(){
 	setInterval(clockUpdate,1000);	
+	clockUpdate();
 }
 
 function clockFormat(val){
